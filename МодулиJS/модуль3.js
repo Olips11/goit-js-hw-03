@@ -222,3 +222,145 @@
 
 
 /////////////////////////// 2. Цикл for...in
+ 
+
+
+// for (key in object) {
+//     // statements
+// }
+
+// Перебирает ключи объекта
+// Можно удалять свойства во время перебора
+// Нельзя использовать для перебора массивов
+
+// const hotel = {
+//     name: 'Resort Hotel',
+//     stars: 5,
+//     capacity: 100,
+// };
+
+// // Перебор ключей объекта hotel
+// for (const key in hotel){
+//     console.log('Key: ', key)
+// }
+
+// /*
+//  * Key: name
+//  * Key: stars
+//  * Key: capacity
+//  */
+
+
+// Для того чтобы получить значение свойства с таким 
+//  во время итерации, используется синтаксис квадратных
+//   скобок, так как ключ всегда строка,.
+
+
+// const hotel = {
+//     name: 'Resort Hotel',
+//     stars: 5,
+//     capacity: 100,
+// };
+
+// for (const key in hotel) {
+//     console.log('Value: ', hotel[key]);
+// }
+// /*
+//  * Value: "Resort Hotel"
+//  * Value: 5
+//  * Value: 100
+//  */
+
+
+
+// //////////////////////// 3. Object.keys(), Object.values(), Object.entries()
+
+
+// Object.keys(obj) - вернет массив, с ключами объекта 
+// obj в виде строк.
+// Object.values(obj) - вернет массив, со значениями 
+// свойств объекта obj .
+// Object.entries(obj) - вернет массив записей, каждым 
+// элементом которого будет еще один массив из 2-х элементов, 
+// ключа и значения этого ключа из объекта obj.
+
+// const hotel = {
+//     name: 'Resort Hotel',
+//     stars: 5,
+//     capacity: 100,
+// };
+
+// const keys = Object.keys(hotel); // ["name", "stars", "capacity"]
+// const values = Object.values(hotel); // ["Resort Hotel", 5, 100]
+// const entries = Object.entries(hotel); // [Array(2), Array(2), Array(2)]
+
+
+// Скомбинировав результат Object.keys() и цикл for...of 
+// мы можем перебрать объект. На самом деле мы перебираем 
+// массив ключей, а потом просто обращаемся к свойству 
+// объекта с таким ключом.
+
+// const hotel = {
+//     name: 'Resort Hotel',
+//     stars: 5,
+//     capacity: 100,
+// };
+
+// const key = Object.keys(hotel); // ["name", "stars", "capacity"]
+
+// for (const key of keys) {
+//     console.log('Value: ', hotel[key]);
+// }
+/*
+ * Value: Resort Hotel
+ * Value: 5
+ * Value: 100
+ */
+
+ //А можно использовать результат Object.entries() 
+//  который вернет массив записей с ключами и значениями 
+//  свойств объекта.
+
+// const hotel = {
+//     name: 'Resort Hotel',
+//     stars: 5,
+//     capacity: 100,
+// };
+
+/*
+ * Посмотрите в консоли из каких двух элементов состоит каждый подмассив.
+ * Первый элемент это ключ свойства, второй это значение.
+ */
+
+//  const entries = Object.entries(hotel);
+
+//  /*
+//  * На каждой итерации по entries выберем первый элемент подмассива (ключ)
+//  * в переменную key, а второй (значение) в переменную value
+//  */
+
+//  for (const entry of entries) {
+//      const key = entry[0];
+//      const value = entry[1];
+
+//      console.log(`${key}: ${value}`);
+//  }
+
+ /*
+ * name: Resort Hotel
+ * stars: 5
+ * capacity: 100
+ */
+
+// Допустим перед нами стоит задача посчитать общее 
+// количество продуктов в объекте формата имя-продукта: 
+// количество. Тогда подойдет метод Object.values() для 
+// того чтобы получить массив всех значений и потом удобно 
+// их сложить.
+
+consr goods = {
+    apples: 6,
+    grapes: 3,
+    bread: 4,
+    cheese: 7,
+}
