@@ -366,19 +366,56 @@
 // Если передать просто массив, получим NaN, потому что
 // Math.min() не умеет работать с массивом.
 
-const c = [18, 14, 12, 21, 17, 29];
+// const c = [18, 14, 12, 21, 17, 29];
 
-const min = Math.min(temperatures); // NaN
+// const min = Math.min(temperatures); // NaN
 
 // В данном случае нам поможет операция распыления,
 // чтобы передать элементы массива отдельными аргументами
 // при вызове функции.
 
-const temperatures = [18, 14, 12, 21, 17, 29];
-const min = Math.min(...temperatures); // 12
+// const temperatures = [18, 14, 12, 21, 17, 29];
+// const min = Math.min(...temperatures); // 12
 
 // То есть запись Math.min(...[18, 14, 12, 21, 17, 29])
 // аналогична Math.min(18, 14, 12, 21, 17, 29), операция
 // spread распылила массив элементов в аргументы функции.
 
 ////////////////////////////////////// 2.2. Распыление массивов
+
+
+
+//const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
+//const copyOfHouses = [...houses];
+
+//console.log(houses); // ['Arryn','Frey','Greyjoy','Stark','Lannister','Tyrell']
+//console.log(copyOfHouses); // ['Arryn','Frey','Greyjoy','Stark','Lannister','Tyrell']
+//console.log(houses === copyOfHouses); // false - разные ссылки
+
+// То же самое можно было сделать используя метод slice(), 
+// операция spread просто позволяет записывать это более
+//  кратко, особенно когда распылений несколько.
+
+// const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
+// const slicedCopyHouses = houses.slice();
+
+// console.log(houses);
+// console.log(slicedCopyHouses);
+
+//При этом можно добавлять и удалять элементы при 
+// создании нового массива.
+
+// const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
+// const completeHouses = [...houses, 'Targaryen'];
+
+// console.log(houses);
+// console.log(completeHouses);
+
+// Можно очень удобно соединять несколько массивов
+//  в один новый. Порядок распыления исходных массивов 
+//  влияет на порядок элементов в результирующем массиве.
+
+const firstBatch = ['Arryn', 'Frey', 'Greyjoy'];
+const secondBatch = ['Stark', 'Lannister', 'Tyrell'];
+
+const houses = [...firstBatch, ...secondBatch]
