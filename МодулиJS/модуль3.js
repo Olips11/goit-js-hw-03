@@ -415,7 +415,22 @@
 //  в один новый. Порядок распыления исходных массивов 
 //  влияет на порядок элементов в результирующем массиве.
 
-const firstBatch = ['Arryn', 'Frey', 'Greyjoy'];
-const secondBatch = ['Stark', 'Lannister', 'Tyrell'];
+// const firstBatch = ['Arryn', 'Frey', 'Greyjoy'];
+// const secondBatch = ['Stark', 'Lannister', 'Tyrell'];
 
-const houses = [...firstBatch, ...secondBatch]
+// const houses = [...firstBatch, ...secondBatch];
+
+//console.log(houses); // ['Arryn','Frey','Greyjoy','Stark','Lannister','Tyrell']
+
+
+// Можно использовать классические методы массива
+//  вроде slice() в комбинации с операцией spread. 
+//  Все кто смотрел сериал Game of Thrones знают, 
+//  что никто кроме дома Ланистеров не платит по долгам. 
+//  Сделаем массив содержащий все дома кроме Ланистеров.
+
+const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
+const housesInDebt = [...houses.slice(0, 4), ...houses.slice(5)];
+
+console.log(housesInDebt) // ['Arryn','Frey','Greyjoy','Stark','Tyrell']
+

@@ -19,13 +19,15 @@ const findBestEmployee = function (employees) {
 
     for (const key of userKeys) {
         // console.log(key)
-        console.log(employees[key])
+        // console.log(employees[key])
         if (employees[key] > result) {
             result = employees[key];
             name = key
+            
         }
     }
 return name;
+
   };
   
   // Объекты и ожидаемый результат
@@ -43,7 +45,7 @@ return name;
     mango: 17,
     ajax: 4,
   }; 
-  //console.log(findBestEmployee(supports)); 
+  console.log(findBestEmployee(supports)); 
   // 'mango'
   
   const sellers = {
@@ -52,5 +54,5 @@ return name;
     kiwi: 19,
     chelsy: 38,
   }
-  //console.log(findBestEmployee(sellers)); 
+ console.log(findBestEmployee(sellers)); 
   // 'lux'  
