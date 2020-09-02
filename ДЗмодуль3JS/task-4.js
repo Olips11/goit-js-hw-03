@@ -17,7 +17,7 @@ const countTotalSalary = function(employees) {
   for (const key of userKeys) {
     // console.log(key);
     // console.log(employees[key]);
-    total += employees[key]
+    total += employees[key];
     // console.log(total);
 }    
 return total;
