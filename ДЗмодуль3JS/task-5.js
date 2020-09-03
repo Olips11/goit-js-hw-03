@@ -9,20 +9,39 @@
 
 function getAllPropValues (array, prop) {
     'use strict';
-    const product = [];
+    let result = [];
     // Write code under this line 
-    for (const userArray of array) {
-    // console.log(userArray.name);
+    for (const keys of array){ 
+      if (prop in keys){
     
-    if (prop === 'name') {
-        product.push(userArray.name)
-    } else if (prop === 'quantity') {
-            product.push(userArray.quantity) 
- } else { product.push(userArray.category) }
-           
-}
-return product;
+            result.push(keys[prop]);
+            }
+          }
+    return result;
   };
+    // const key =Object.keys(userArray);
+    // console.log(key)
+    // for (const key of keys) {
+     
+    //   if ( prop in key){
+    //     result.push(key[prop])
+    //   }
+
+    // const key =Object.keys(userArray.name);
+    // console.log(key);
+    // }
+
+    // const key =Object.keys(array);
+    // console.log(key);
+//     if (prop === 'name') {
+//         product.push(userArray.name)
+//     } else if (prop === 'quantity') {
+//             product.push(userArray.quantity) 
+//  } else { product.push(userArray.category) }
+           
+// }
+// return product;
+ 
   
   // Объекты и ожидаемый результат
   const products = [
