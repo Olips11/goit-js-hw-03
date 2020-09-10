@@ -383,8 +383,6 @@
 
 ////////////////////////////////////// 2.2. Распыление массивов
 
-
-
 //const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
 //const copyOfHouses = [...houses];
 
@@ -392,7 +390,7 @@
 //console.log(copyOfHouses); // ['Arryn','Frey','Greyjoy','Stark','Lannister','Tyrell']
 //console.log(houses === copyOfHouses); // false - разные ссылки
 
-// То же самое можно было сделать используя метод slice(), 
+// То же самое можно было сделать используя метод slice(),
 // операция spread просто позволяет записывать это более
 //  кратко, особенно когда распылений несколько.
 
@@ -402,7 +400,7 @@
 // console.log(houses);
 // console.log(slicedCopyHouses);
 
-//При этом можно добавлять и удалять элементы при 
+//При этом можно добавлять и удалять элементы при
 // создании нового массива.
 
 // const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
@@ -412,7 +410,7 @@
 // console.log(completeHouses);
 
 // Можно очень удобно соединять несколько массивов
-//  в один новый. Порядок распыления исходных массивов 
+//  в один новый. Порядок распыления исходных массивов
 //  влияет на порядок элементов в результирующем массиве.
 
 // const firstBatch = ['Arryn', 'Frey', 'Greyjoy'];
@@ -422,15 +420,194 @@
 
 //console.log(houses); // ['Arryn','Frey','Greyjoy','Stark','Lannister','Tyrell']
 
-
 // Можно использовать классические методы массива
-//  вроде slice() в комбинации с операцией spread. 
-//  Все кто смотрел сериал Game of Thrones знают, 
-//  что никто кроме дома Ланистеров не платит по долгам. 
+//  вроде slice() в комбинации с операцией spread.
+//  Все кто смотрел сериал Game of Thrones знают,
+//  что никто кроме дома Ланистеров не платит по долгам.
 //  Сделаем массив содержащий все дома кроме Ланистеров.
 
-const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
-const housesInDebt = [...houses.slice(0, 4), ...houses.slice(5)];
+// const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
+// const housesInDebt = [...houses.slice(0, 4), ...houses.slice(5)];
 
-console.log(housesInDebt) // ['Arryn','Frey','Greyjoy','Stark','Tyrell']
+// console.log(housesInDebt) // ['Arryn','Frey','Greyjoy','Stark','Tyrell']
 
+// Можно обновлять элементы не изменяя оригинальный массив,
+// а создавая новый с обновленными значениями.
+
+// const houses = ['Arryn', 'Frey', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell'];
+
+// // Вертикальная запись удобнее для чтения
+// const updatedHouses = [
+//   ...houses.slice(0, 1),
+//   'Frey of the Crossing',
+//   ...houses.slice(2),
+// ];
+
+// console.log(updatedHouses);
+// ['Arryn', 'Frey of the Crossing', 'Greyjoy', 'Stark', 'Lannister', 'Tyrell']
+
+//////////////////////////////////////  2.3. Распыление объектов
+
+// Для объектов, в будущих стандартах языка, будет так же утверждена операция spread.
+// А в современных браузерах, и используя такие инструменты как Babel,
+//     его можно применять уже сейчас.Он позволяет распылять свойства одного объекта в другой.
+
+// Распыление можно использовать как замену Object.assign(),
+//     то есть когда необходимо создать новый объект или обновить уже
+// существующий по результату слияния нескольких других объектов.
+
+// const a = { x: 1, y: 2 };
+// const b = { x: 0, z: 3 };
+
+// const c = Object.assign({}, a, b);
+// console.log(c); // {x: 0, y: 2, z: 3}
+
+// // То же самое используя операцию spread
+// const d = { ...a, ...b };
+
+// console.log(d); // {x: 0, y: 2, z: 3}
+
+// Во время слияния можно добавлять свойства в произвольное место.
+// Но следует помнить, что свойства распыляемого объекта могут перезаписать
+// значение существующего свойства, если имена ключей совпадают,
+//     а распыление происходит после указания свойства
+
+// const a = { x: 1, y: 2 };
+// const b = { x: 0, z: 3 };
+
+// const c = { x: 5, j: 10, ...a, z: 15, ...b };
+
+// console.log(c); // {x: 0, j: 10, y: 2, z: 3}
+
+// Создадим химеру:)
+
+// const lion = { hasTail: true, legs: 4 };
+// const eagle = { canFly: true };
+
+// const chimera = { ...lion, ...eagle };
+
+// console.log(chimera); // {hasTail: true, legs: 4, canFly: true}
+
+//////////////////////////////////// 3. Операция rest
+
+// const add = function (...args) {
+//   console.log(args);
+// };
+
+// add(1, 2, 3); //[1, 2, 3]
+// add(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
+
+// const add = function (value, ...args) {
+//   console.log(value); // первый аргумент
+//   console.log(args); // массив всех остальных аргументов
+// };
+
+// add(10, 1, 2, 3);
+// add(15, 1, 2, 3, 4, 5);
+
+//////////////////////////////////// 1. Деструктуризация объектов
+
+// const hotel = {
+//   name: 'Resort Hotel',
+//   stars: 5,
+//   capacite: 100,
+// };
+
+// // Объявим переменные и присвоим им значения из объекта
+// const { name, stars, status } = hotel;
+
+// console.log(name, stars, status); // "Resort Hotel", 5, undefined
+
+// Присвоения undefined можно избежать,
+// задав переменным значения по умолчанию,
+// в случае если такого свойства в объекте нет.
+
+// const hotel = {
+//   name: 'Resort Hotel',
+//   stars: 5,
+//   capasity: 100,
+// };
+
+// const { name = 'hotel', stars = 3, status = 'empty' } = hotel;
+
+// console.log(name, stars, status);
+
+// Не всегда удобно создавать имена переменных по ключам,
+// поэтому можно переопределить имена в процессе присвоения.
+// Сначала пишем имя свойства из которого мы хотим получить значение,
+// после чего ставим двоеточие и пишем имя переменной в которую хотим
+// поместить значение этого свойства.
+
+// const hotel = {
+//   name: 'Resort Hotel',
+//   stars: 5,
+//   capacity: 100,
+// };
+
+// const { name: hotelName, stars, status: hotelStatus = 'empty' } = hotel;
+
+// console.log(hotelName, stars, hotelStatus); // "Resort Hotel", 5, "empty"
+
+// Используя операцию ... (rest) можно делать частичную деструктуризацию,
+//     взяв из объекта необходимые поля, а остальное собрать в переменную
+// под именем rest(имя переменной произвольное), это будет объект с теми полями,
+//     которые мы явно не деструктуризировали в переменные.
+
+// const hotel = {
+//   name: 'Resort Hotel',
+//   stars: 5,
+//   capacity: 100,
+// };
+
+// const { name, ...rest } = hotel;
+
+// console.log(name); // "Resort Hotel"
+// console.log(rest); // {stars: 5, capacity: 100}
+
+////////////////////////////      2. Деструктуризация массивов
+
+// const rgb = [200, 255, 100];
+
+// const [red, green, blue] = rgb;
+
+// console.log(`Red: ${red}, Green: ${green}, Blue: ${blue}`);
+
+// При деструктуризации массивов переменной может
+// быть присвоено значение отдельно от ее объявления.
+
+// const rgb = [200, 255, 100];
+// let [red, green, blue] = rgb;
+
+// [red, green, blue] = rgb;
+
+// console.log(`Red: ${red}, Green: ${green}, Blue: ${blue}`);
+// // Red: 200, Green: 255, Blue: 100
+
+// Если переменных больше чем элементов массива, им будет присвоено undefined,
+//     поэтому можно указывать значения по умолчанию.
+
+// const rgb = [200, 100, 255];
+
+// const [red, green, blue, alfa = 0.3] = rgb;
+
+// console.log(`Red: ${red}, Green: ${green}, Blue: ${blue}, Alfa: ${alfa}`);
+
+// Иногда из массива необходимо деструктуризировать только первые n элементов,
+//     а остальные сохранить в одну переменную в виде массива.При деструкции массива
+// можно распаковать и присвоить оставшуюся часть элементов массива переменной,
+//     используя операцию ... (rest)
+
+// const rgb = [200, 255, 100];
+
+// const [red, ...colors] = rgb;
+
+// console.log(`Red: ${red}, Colors: ${colors}`); // Red: 200, Colors: [255, 100]
+
+// Элементы можно пропускать.Допустим из массива rgb необходимо взять
+// только последнее значение.Используется это крайне редко.
+
+// const rgb = [200, 100, 255];
+
+// const [, , blue] = rgb;
+
+// console.log(`Blue: ${blue}`); // Blue: 255
